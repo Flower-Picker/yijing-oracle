@@ -148,9 +148,83 @@
   margin: 0.5rem 0;
 }
 
+/* 登录方式标签 */
+.login-type-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.login-type-tabs .tab {
+  flex: 1;
+  padding: 0.75rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.login-type-tabs .tab.active {
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.login-type-tabs .tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold-primary);
+}
+
+/* 验证码输入组 */
+.code-input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.code-input-wrapper input {
+  flex: 1;
+}
+
+.send-code-btn {
+  background: var(--bg-hover);
+  border: 1px solid var(--gold-dark);
+  color: var(--gold-primary);
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.send-code-btn:hover:not(:disabled) {
+  background: var(--gold-dark);
+  color: var(--bg-primary);
+}
+
+.send-code-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   .modal-content {
     padding: 2rem 1.5rem;
     margin: 1rem;
+  }
+
+  .login-type-tabs {
+    gap: 0.5rem;
+  }
+
+  .send-code-btn {
+    padding: 0.875rem 0.75rem;
+    font-size: 0.8125rem;
   }
 }
