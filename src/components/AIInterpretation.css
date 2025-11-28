@@ -151,6 +151,39 @@
   margin: 0;
 }
 
+/* 升级提示和配额提醒 */
+.upgrade-prompt {
+  margin-top: 2rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.upgrade-prompt .info-box {
+  max-width: 100%;
+}
+
+.upgrade-prompt .btn-primary {
+  margin-top: 0.5rem;
+}
+
+.quota-reminder {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid var(--gold-dark);
+  border-radius: 8px;
+}
+
+.quota-reminder p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+}
+
+.quota-reminder strong {
+  color: var(--gold-primary);
+  font-size: 1.125rem;
+}
+
 @media (max-width: 768px) {
   .ai-header h3 {
     font-size: 1.5rem;
@@ -166,5 +199,13 @@
 
   .result-subtitle {
     font-size: 1rem;
+  }
+
+  .upgrade-prompt {
+    margin-top: 1.5rem;
+  }
+
+  .quota-reminder {
+    margin-top: 1rem;
   }
 }

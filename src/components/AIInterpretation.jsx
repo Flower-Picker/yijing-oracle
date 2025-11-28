@@ -132,6 +132,24 @@ export default function AIInterpretation({ hexagram, changingHexagram, lines, qu
             <p className="disclaimer">
               * AI解卦仅供参考，具体决策请结合实际情况综合判断
             </p>
+
+            {!isGuest && user.aiQuota <= 0 && (
+              <div className="upgrade-prompt">
+                <div className="info-box upgrade-info">
+                  <p>💎 AI解卦次数已用完</p>
+                  <p>升级VIP享受无限次数，继续获得AI智慧指引</p>
+                  <button className="btn-primary" onClick={upgradeToVIP}>
+                    立即升级VIP
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {!isGuest && user.aiQuota > 0 && user.aiQuota <= 3 && (
+              <div className="quota-reminder">
+                <p>💡 您还有 <strong>{user.aiQuota}</strong> 次AI解卦机会</p>
+              </div>
+            )}
           </div>
         </div>
       )}
