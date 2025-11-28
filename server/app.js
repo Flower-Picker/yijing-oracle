@@ -4,7 +4,11 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
-const { testConnection } = require('./config/database');
+// 使用SQLite数据库（开发环境）或MySQL（生产环境）
+const usesSQLite = process.env.DB_TYPE === 'sqlite' || !process.env.DB_TYPE;
+const { testConnection, initDatabase } = usesSQLite
+  ? require('./config/database.sqlite')
+  : require('./config/database');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -68,6 +72,11 @@ app.use((req, res) => {
 
 // 启动服务器
 async function startServer() {
+  // 初始化SQLite数据库（如果使用SQLite）
+  if (usesSQLite && initDatabase) {
+    initDatabase();
+  }
+
   // 测试数据库连接
   const dbConnected = await testConnection();
 
@@ -78,6 +87,7 @@ async function startServer() {
   app.listen(PORT, () => {
     console.log(`🚀 Server is running on port ${PORT}`);
     console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🌐 Database: ${usesSQLite ? 'SQLite (Development)' : 'MySQL (Production)'}`);
     console.log(`🌐 Client URL: ${process.env.CLIENT_URL || 'http://localhost:5173'}`);
   });
 }
