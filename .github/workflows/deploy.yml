@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - claude/iching-divination-app-01EdT9BzGZMSEHLLMJcAa2S3
   workflow_dispatch:
 
 permissions:
